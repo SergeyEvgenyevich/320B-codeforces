@@ -20,19 +20,12 @@ main()
     vector<int> pref(N+1,0);
     for(int i=0; i<n; i++) {
         int x;
-        cin >> x;
+        fin >> x;
         a[x]++;
     }
     pref[0] = a[0];
     for(int i = 1; i <= N; i++) pref[i]=pref[i-1]+a[i];
-    for(int i = 1; i <= N; i++) {
-        for(int j = 1; j <= N; j++) {
-            if(j <= 2*i && j > i) {
-                minx = min(minx,sum(pref,0,i-1)+sum(pref,j+1,N));
-
-            }
-        }
-    }
+    for(int i = 1; i <= N; i++) minx = min(minx,sum(pref,0,i-1)+sum(pref,2*i+1,N));
     fout << minx;
 
 }
